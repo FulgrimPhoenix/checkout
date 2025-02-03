@@ -1,9 +1,6 @@
 import {
   Box,
   Button,
-  Checkbox,
-  FormControlLabel,
-  Paper,
   Step,
   StepLabel,
   Stepper,
@@ -11,14 +8,17 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { FormContainerRoot } from "./FormContainer.styles";
-import { pink } from "@mui/material/colors";
+import { STEPS, STEPS_TITLES } from "./FormContainer.const";
 
-export const FormContainer = ({ children }: { children?: React.ReactNode }) => {
+export const FormContainer = ({
+  children,
+}: {
+  children?: React.ReactNode[];
+}) => {
   const [activeStep, setActiveStep] = useState(0);
-  const steps = ["Shipping address", "Payment details", "Review your order"];
 
   function handleChangeStep(step: -1 | 1) {
-    if (activeStep + step >= 0 || activeStep + step < steps.length) {
+    if (activeStep + step >= 0 || activeStep + step < STEPS.length) {
       setActiveStep(activeStep + step);
     }
   }
@@ -29,51 +29,41 @@ export const FormContainer = ({ children }: { children?: React.ReactNode }) => {
         Checkout
       </Typography>
       <Stepper activeStep={activeStep} sx={{ padding: "24px 0 40px" }}>
-        {steps.map((label, i) => (
+        {STEPS.map((label, i) => (
           <Step key={i}>
-            <StepLabel>{label}</StepLabel>
+            <StepLabel color="secondary">{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
-      <Box sx={{ mt: "16px" }}>
-        <Typography component="h6" variant="h6" gutterBottom>
-          {steps[activeStep]}
-        </Typography>
-      </Box>
-      {children}
-      <FormControlLabel
-        control={
-          <Checkbox
-            sx={{
-              "&.Mui-checked": {
-                color: pink[600],
-              },
-            }}
-          />
-        }
-        label="Use this address for payment details"
-      />
+
+      <Typography component="h6" variant="h6" gutterBottom>
+        {STEPS_TITLES[activeStep]}
+      </Typography>
+      {children?.map((el, i) => i === activeStep && el)}
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        {activeStep === 0 ? (
+        {activeStep > 2 ? (
           <></>
         ) : (
-          <Button
-            onClick={() => handleChangeStep(-1)}
-            variant="text"
-            color="inherit"
-            sx={{ m: "24px 0 0 8px" }}
-          >
-            Back
-          </Button>
+          <>
+            {activeStep !== 0 && (
+              <Button
+                onClick={() => handleChangeStep(-1)}
+                variant="text"
+                color="inherit"
+                sx={{ m: "24px 0 0 8px" }}
+              >
+                Back
+              </Button>
+            )}
+            <Button
+              onClick={() => handleChangeStep(1)}
+              variant="contained"
+              sx={{ m: "24px 0 0 8px" }}
+            >
+              {activeStep === 2 ? "Place order" : "Next"}
+            </Button>
+          </>
         )}
-
-        <Button
-          onClick={() => handleChangeStep(1)}
-          variant="contained"
-          sx={{ m: "24px 0 0 8px" }}
-        >
-          Next
-        </Button>
       </Box>
     </FormContainerRoot>
   );

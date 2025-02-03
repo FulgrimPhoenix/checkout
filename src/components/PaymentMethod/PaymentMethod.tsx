@@ -1,12 +1,12 @@
 import { Checkbox, FormControlLabel, Grid2, TextField } from "@mui/material";
-import { ADDRESS_INPUT_LIST } from "./ShippingAddress.const";
 import { pink } from "@mui/material/colors";
+import { PAYMENT_INPUT_LIST } from "./PaymentMethod.const";
 
-export const ShippingAddress = () => {
+export const PaymentMethod = () => {
   return (
     <Grid2 container spacing={3}>
-      {ADDRESS_INPUT_LIST.map((input) => (
-        <Grid2 key={input.name} size={input.size}>
+      {PAYMENT_INPUT_LIST.map((input) => (
+        <Grid2 size={input.size}>
           <TextField
             id={input.name}
             label={input.name}
@@ -30,7 +30,7 @@ export const ShippingAddress = () => {
               }}
             />
           }
-          label="Use this address for payment details"
+          label="Remember credit card details for next time"
         />
       </Grid2>
     </Grid2>
