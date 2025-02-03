@@ -5,6 +5,7 @@ import { ShippingAddress } from "./components/ShippingAddress/ShippingAddress";
 import { PaymentMethod } from "./components/PaymentMethod/PaymentMethod";
 import { OrderSummary } from "./components/OrderSummary/OrderSummary";
 import { Typography } from "@mui/material";
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             shipped.
           </Typography>
         </FormContainer>
+        <Footer />
       </MainContent>
     </AppRoot>
   );
