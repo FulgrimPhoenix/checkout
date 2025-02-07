@@ -1,4 +1,4 @@
-import { IProduct } from "src/types/product.types";
+import { IProduct } from "~features/product/product.types";
 
 export const PRODUCT_LIST: IProduct[] = [
   { title: "Product 1", description: "A nice thing", price: 9.99 },

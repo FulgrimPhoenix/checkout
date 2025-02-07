@@ -2,15 +2,15 @@ import { Container, styled } from "@mui/material";
 
 export const AppRoot = styled(Container)(({ theme }) => ({
   width: "100%",
-  height: "100vh",
+  height: "100dvh",
   padding: "0",
 
   backgroundColor: theme.palette.background.default,
   boxShadow: "none",
-  "@media (min-width:1200px)": {
+  [theme.breakpoints.up("lg")]: {
     maxWidth: "100%",
   },
-  "@media (min-width:600px)": {
+  [theme.breakpoints.up("sm")]: {
     padding: "0",
   },
 }));

@@ -1,19 +1,13 @@
 import { Grid2, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { PAYMENT_INFO, PRODUCT_LIST } from "./OrderSummary.const";
+import { OrderListItem } from "./OrderSummary.styles";
 
 export const OrderSummary = () => {
   return (
     <>
       <List sx={{ p: "0" }}>
         {PRODUCT_LIST.map((el) => (
-          <ListItem
-            key={el.title}
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              p: "8px 0",
-            }}
-          >
+          <OrderListItem key={el.title}>
             <ListItemText
               primary={el.title}
               secondary={el.description ? el.description : null}
@@ -21,20 +15,14 @@ export const OrderSummary = () => {
             <Typography variant="body2">
               {el.price ? `$${el.price}` : "Free"}
             </Typography>
-          </ListItem>
+          </OrderListItem>
         ))}
-        <ListItem
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            p: "8px 0",
-          }}
-        >
+        <OrderListItem>
           <ListItemText sx={{ p: "2px 0" }} primary={"Total"} />
           <Typography component="h6" variant="subtitle1" sx={{ mt: "0" }}>
             {`$${PRODUCT_LIST.reduce((acc, el) => (acc += el.price), 0)}`}
           </Typography>
-        </ListItem>
+        </OrderListItem>
       </List>
       <Grid2 container spacing={2}>
         <Grid2 size={{ xs: 12, sm: 12, md: 6 }}>

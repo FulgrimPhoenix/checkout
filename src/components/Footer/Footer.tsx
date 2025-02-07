@@ -1,12 +1,13 @@
-import { Link, Typography } from "@mui/material";
+import { Link, Typography, useTheme } from "@mui/material";
 import { FooterRoot } from "./Footer.styles";
-import theme from "src/styles/theme";
 
 export const Footer = () => {
+  const currentTheme = useTheme();
+
   return (
     <FooterRoot>
       <Typography
-        color={theme.palette.text.secondary}
+        color={currentTheme.palette.text.secondary}
         textAlign="center"
         variant="body2"
       >
@@ -14,7 +15,7 @@ export const Footer = () => {
         <Link
           href={"https://mui.com"}
           underline="hover"
-          color={theme.palette.text.secondary}
+          color={currentTheme.palette.text.secondary}
         >
           Your Website
         </Link>{" "}
